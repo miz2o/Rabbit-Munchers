@@ -7,9 +7,13 @@ public class Placement : MonoBehaviour
 {
     public Camera mainCamera;
     public GameObject placePart;
-    public bool partPlaced = false;
+    public bool selpartPlaced = false;
     public GameObject selectionpart = null;
     public Vector3 worldPosition;
+
+
+
+    public bool isPlaceModeOn;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,32 +23,40 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 mouseScreenPosition = Input.mousePosition;
-        Ray ray = mainCamera.ScreenPointToRay(mouseScreenPosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (isPlaceModeOn)
         {
-            // Get the world position where the ray hit
-            Vector3 worldPosition = hit.point;
-
-            // Do something with the world position
-            Debug.Log("World Position: " + worldPosition);
-
-            if (partPlaced == false)
+            Vector3 mouseScreenPosition = Input.mousePosition;
+            Ray ray = mainCamera.ScreenPointToRay(mouseScreenPosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
             {
-                selectionpart = Instantiate(placePart, new Vector3(worldPosition.x, 1, worldPosition.z), Quaternion.identity);
-                partPlaced = true;
+                // Get the world position where the ray hit
+                Vector3 worldPosition = hit.point;
+                GameObject objectHit = hit.transform.gameObject;
 
+                // Do something with the world position
+                Debug.Log("World Position: " + worldPosition);
+
+                if (objectHit != null && objectHit.tag == "Floor")
+                {
+
+                    if (selpartPlaced == false)
+                    {
+                        selectionpart = Instantiate(placePart, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
+                        selpartPlaced = true;
+
+                    }
+                    if (selectionpart != null)
+                    {
+                        selectionpart.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z));
+                    }
+                }
+                if (Input.GetMouseButtonDown(0))
+                {
+                    selpartPlaced = false;
+
+                }
             }
-            if (selectionpart != null)
-            {
-                selectionpart.transform.position = new Vector3(worldPosition.x, 1, worldPosition.z);
-            }
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-
-
         }
     }
 }
