@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8851795695168881266}
   - component: {fileID: 662195690992170196}
   - component: {fileID: 3484020970192855799}
+  - component: {fileID: 6836181049907001576}
   m_Layer: 0
   m_Name: BuffBunny
   m_TagString: Untagged
@@ -105,3 +106,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6836181049907001576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036416300740927561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1193eb2bad616574599493fac4163f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentpoint: 0
+  speed: 1
+  damage: 35

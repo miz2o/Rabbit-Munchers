@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Placement : MonoBehaviour
 {
@@ -10,15 +12,35 @@ public class Placement : MonoBehaviour
     public bool selpartPlaced = false;
     public GameObject selectionpart = null;
     public Vector3 worldPosition;
-
+    public Button[] towerButtons;
+    public GameObject[] towers;
+    public Button currentButton;
 
 
     public bool isPlaceModeOn;
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start method called");
+        if (towerButtons == null || towerButtons.Length == 0)
+        {
+            Debug.LogError("Tower buttons array is not set or empty.");
+            return;
+        }
 
+        foreach (Button button in towerButtons)
+        {
+            if (button == null)
+            {
+                Debug.LogError("Button is null.");
+                continue;
+            }
+            button.onClick.AddListener(() => OnButtonClick(button));
+            Debug.Log("Added listener to button: " + button.name);
+        }
+        isPlaceModeOn = false;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -35,7 +57,7 @@ public class Placement : MonoBehaviour
                 GameObject objectHit = hit.transform.gameObject;
 
                 // Do something with the world position
-                Debug.Log("World Position: " + worldPosition);
+
 
                 if (objectHit != null && objectHit.tag == "Floor")
                 {
@@ -54,9 +76,27 @@ public class Placement : MonoBehaviour
                 if (Input.GetMouseButtonDown(0))
                 {
                     selpartPlaced = false;
-
+                    isPlaceModeOn = false;
                 }
             }
         }
     }
+
+    void OnButtonClick(Button clickedButton)
+    {
+        Debug.Log("Clicked: " + clickedButton.name);
+        if (currentButton != clickedButton)
+        {
+            currentButton = clickedButton;
+            isPlaceModeOn = true;
+        }
+        else
+        {
+            isPlaceModeOn = false;
+            Destroy(selectionpart);
+        }
+  
+
+    }
+
 }
