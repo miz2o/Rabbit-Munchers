@@ -60,7 +60,7 @@ public class CameraController : MonoBehaviour
         }
 
         // Lock the Z-axis and Y-axis rotation
-        rotationEuler.z = 0;s
+        rotationEuler.z = 0;
         rotationEuler.y = 0;
 
         // Apply the modified rotation back to the transform
