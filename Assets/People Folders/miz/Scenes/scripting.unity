@@ -1038,7 +1038,7 @@ PrefabInstance:
     - target: {fileID: 6695998423672551381, guid: d40ccffd023204742b1bda3b21745ace,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 24.59064
+      value: 24.678
       objectReference: {fileID: 0}
     - target: {fileID: 6695998423672551381, guid: d40ccffd023204742b1bda3b21745ace,
         type: 3}
@@ -1238,6 +1238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveAmount: 2
+  coolDown: 0
   waveOne: 0300000001000000
 --- !u!1 &1638194038
 GameObject:
