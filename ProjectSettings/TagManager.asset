@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Floor
   - wayPoint
+  - Enemy
+  - Tower
+  - Rangepart
   layers:
   - Default
   - TransparentFX

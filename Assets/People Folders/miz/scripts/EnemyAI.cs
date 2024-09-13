@@ -8,6 +8,11 @@ public class EnemyAI : MonoBehaviour
     public int currentpoint;
     public float speed;
     public int damage;
+    public int health;
+    public TMPro.TMP_Text healthdisplay;
+    public ParticleSystem damageEffect;
+    public int enemworth;
+    public GameObject healthCanvas;
 
     private WaveHandler waveHandler; // Reference to WaveHandler
 
@@ -31,13 +36,28 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void getDamage(int loss)
+    {
+        damageEffect.Play();
+        health -= loss;
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+            waveHandler.EnemyKilled(enemworth);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        healthCanvas.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        healthdisplay.text = health.ToString();
         if (currentpoint < waypoints.Length)
         {
             Transform pointToGo = waypoints[currentpoint];
             transform.position = Vector3.MoveTowards(transform.position, pointToGo.position, speed * Time.deltaTime);
+            Vector3 direction = pointToGo.transform.position - transform.position;
+            direction.y = 0;
+            transform.rotation = Quaternion.LookRotation(direction);
 
             // Use a small threshold for position comparison
             if (Vector3.Distance(transform.position, pointToGo.position) < 0.1f)

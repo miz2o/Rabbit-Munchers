@@ -15,6 +15,10 @@ public class Placement : MonoBehaviour
     public Button[] towerButtons;
     public GameObject[] towers;
     public Button currentButton;
+    public GameObject currentselection;
+    public GameObject placingtower;
+    public bool isCurrentPlaced;
+  
 
 
     public bool isPlaceModeOn;
@@ -45,8 +49,10 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isPlaceModeOn)
         {
+            isCurrentPlaced = false;
             Vector3 mouseScreenPosition = Input.mousePosition;
             Ray ray = mainCamera.ScreenPointToRay(mouseScreenPosition);
             RaycastHit hit;
@@ -64,39 +70,71 @@ public class Placement : MonoBehaviour
 
                     if (selpartPlaced == false)
                     {
+                        placingtower = Instantiate(currentselection, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selectionpart = Instantiate(placePart, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selpartPlaced = true;
 
                     }
-                    if (selectionpart != null)
+                    if (selectionpart != null && placingtower != null)
                     {
+                        placingtower.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z));
                         selectionpart.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z));
                     }
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
+                    isCurrentPlaced = true;
                     selpartPlaced = false;
                     isPlaceModeOn = false;
+                    placingtower.GetComponent<TowerAttacking>().Place();
+
+                    // Clean up the selection part once placed
+                    if (selectionpart != null)
+                    {
+                        Destroy(selectionpart);
+                    }
                 }
             }
         }
+
     }
 
     void OnButtonClick(Button clickedButton)
     {
         Debug.Log("Clicked: " + clickedButton.name);
-        if (currentButton != clickedButton)
+
+        // Get the index of the clicked button
+        int clickedButtonIndex = System.Array.IndexOf(towerButtons, clickedButton);
+        if (clickedButtonIndex >= 0 && clickedButtonIndex < towers.Length)
         {
-            currentButton = clickedButton;
-            isPlaceModeOn = true;
+            currentselection = towers[clickedButtonIndex];
+            Debug.Log("Selected tower: " + currentselection.name);
         }
-        else
+
+        // Set up the current button and enable place mode
+        currentButton = clickedButton;
+        isPlaceModeOn = true;
+
+
+
+
+
+        // Destroy the preview objects if any
+        if (selectionpart != null)
         {
-            isPlaceModeOn = false;
             Destroy(selectionpart);
+
+
+            if (placingtower != null && isCurrentPlaced == false)
+            {
+                Destroy(placingtower);
+            }
+
+            selpartPlaced = false;
         }
-  
+
 
     }
+
 
 }

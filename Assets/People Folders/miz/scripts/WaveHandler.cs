@@ -20,6 +20,16 @@ public class WaveHandler : MonoBehaviour
 
     public Dictionary<int, int[]> waves = new Dictionary<int, int[]>();
 
+
+  /// Wavedata info  <summary>
+  ///  0 = Big bunny
+  ///  1 = small bunny
+  ///  2 = big bunny max speed
+  ///  3 = small bunny max speed
+  /// </summary>
+
+
+
     public int[] Wave1;
     public int[] Wave2;
     public int[] Wave3;
@@ -39,7 +49,10 @@ public class WaveHandler : MonoBehaviour
     void Start()
     {
         Currency = 200;
-        UpdateUI();
+        health = 100; // Initialize health
+       
+
+        // Populate waves dictionary
         waves.Add(1, Wave1);
         waves.Add(2, Wave2);
         waves.Add(3, Wave3);
@@ -61,22 +74,32 @@ public class WaveHandler : MonoBehaviour
         currentWave = 1;
     }
 
+    public void EnemyKilled(int enemworth)
+    {
+        currentAlive -= 1;
+        Currency += enemworth;
+       
+    }
+
+
     public void EnemyDestroyed(int DMG)
     {
         currentAlive -= 1;
         health -= DMG;
-        UpdateUI();
-        if (health <= 0 )
+      
+        if (health <= 0)
         {
-            print("Lose");
+            Debug.Log("Game Over");
             healthUI.text = "DEATH";
         }
     }
-    public void UpdateUI()
+
+  void Update()
     {
         currencyUI.text = Currency.ToString();
         healthUI.text = health.ToString();
     }
+
     IEnumerator ExecuteEverySecond()
     {
         while (secondsleft > 0)
@@ -104,8 +127,8 @@ public class WaveHandler : MonoBehaviour
             waveEarnings = currentAlive * 50;
 
             // Start coroutines for spawning enemies
-            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(Enemy1, enemy1Amt, 1f, 12f));
-            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(Enemy2, enemy2Amt, 0.1f, 4f));
+            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(Enemy1, enemy1Amt, 0.5f, currentWaveData[2]));
+            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(Enemy2, enemy2Amt, 0.1f, currentWaveData[3]));
 
             // Wait for both coroutines to complete
             yield return spawnEnemy1Coroutine;
@@ -120,7 +143,7 @@ public class WaveHandler : MonoBehaviour
             Debug.Log("All enemies are destroyed. Proceeding to the next wave.");
             currentWave += 1;
             Currency += waveEarnings;
-            UpdateUI();
+          
 
             if (waves.ContainsKey(currentWave))
             {
@@ -129,8 +152,12 @@ public class WaveHandler : MonoBehaviour
             }
             else
             {
-                Debug.Log("Win");
+                Debug.Log("You Win!");
             }
+        }
+        else
+        {
+            Debug.LogError("No data for current wave: " + currentWave);
         }
     }
 
@@ -143,7 +170,7 @@ public class WaveHandler : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnDelay1, spawnDelay2));
 
             GameObject enemy = Instantiate(enemyPrefab);
-
+ 
 
             placed += 1;
         }
