@@ -18,8 +18,8 @@ public class Placement : MonoBehaviour
     public GameObject currentselection;
     public GameObject placingtower;
     public bool isCurrentPlaced;
-  
-
+    public int currency;
+    public GameObject wpholder;
 
     public bool isPlaceModeOn;
     // Start is called before the first frame update
@@ -49,7 +49,7 @@ public class Placement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        currency = wpholder.GetComponent<WaveHandler>().currency;
         if (isPlaceModeOn)
         {
             isCurrentPlaced = false;
@@ -86,7 +86,22 @@ public class Placement : MonoBehaviour
                     isCurrentPlaced = true;
                     selpartPlaced = false;
                     isPlaceModeOn = false;
-                    placingtower.GetComponent<TowerAttacking>().Place();
+                    int towerprice = placingtower.GetComponent<TowerAttacking>().towercost;
+                    int afteramt = currency -= towerprice;
+
+                  
+                
+      
+                    if (afteramt >= 0)
+                    {
+                        placingtower.GetComponent<TowerAttacking>().Place();
+                        wpholder.GetComponent<WaveHandler>().RemoveCurrency(towerprice);
+                    }
+                    else
+                    {
+                        Destroy(placingtower);
+                        print("not enough currency");
+                    }
 
                     // Clean up the selection part once placed
                     if (selectionpart != null)
@@ -112,9 +127,15 @@ public class Placement : MonoBehaviour
         }
 
         // Set up the current button and enable place mode
-        currentButton = clickedButton;
-        isPlaceModeOn = true;
+        int currentprice = currentselection.GetComponent<TowerAttacking>().towercost;
+        int afterprice = currency -= currentprice;
 
+        if (afterprice >= 0)
+        {
+
+            currentButton = clickedButton;
+            isPlaceModeOn = true;
+        }
 
 
 

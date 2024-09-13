@@ -44,7 +44,8 @@ public class EnemyAI : MonoBehaviour
         {
             waveHandler.EnemyKilled(enemworth);
             Destroy(gameObject);
-            
+           
+
         }
     }
     // Update is called once per frame
@@ -70,6 +71,7 @@ public class EnemyAI : MonoBehaviour
                     {
                         waveHandler.EnemyDestroyed(damage); // Call EnemyDestroyed on the WaveHandler instance
                     }
+                  
                     Destroy(gameObject); // Destroy the enemy after calling EnemyDestroyed
                 }
             }

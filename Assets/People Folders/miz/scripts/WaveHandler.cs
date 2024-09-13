@@ -5,18 +5,21 @@ using TMPro;
 
 public class WaveHandler : MonoBehaviour
 {
-    public int Currency;
+    public int currency;
     public TMP_Text waveAmt;
     public TMP_Text currencyUI;
     public TMP_Text healthUI;
     public int secondsleft;
     public int currentWave;
-    public GameObject Enemy1;
-    public GameObject Enemy2;
+    public GameObject enemy1;
+    public GameObject enemy2;
     public Transform[] waypoints;
     public int currentAlive;
     public int waveEarnings;
     public int health;
+    public AudioSource crunch;
+    public AudioSource victory;
+    public AudioSource countdown;
 
     public Dictionary<int, int[]> waves = new Dictionary<int, int[]>();
 
@@ -24,8 +27,8 @@ public class WaveHandler : MonoBehaviour
   /// Wavedata info  <summary>
   ///  0 = Big bunny
   ///  1 = small bunny
-  ///  2 = big bunny max speed
-  ///  3 = small bunny max speed
+  ///  2 = big bunny max time
+  ///  3 = small bunny max time
   /// </summary>
 
 
@@ -48,7 +51,7 @@ public class WaveHandler : MonoBehaviour
 
     void Start()
     {
-        Currency = 200;
+        currency = 200;
         health = 100; // Initialize health
        
 
@@ -76,32 +79,43 @@ public class WaveHandler : MonoBehaviour
 
     public void EnemyKilled(int enemworth)
     {
+        print("Killed an enemy");
         currentAlive -= 1;
-        Currency += enemworth;
+        currency += enemworth;
        
     }
 
 
     public void EnemyDestroyed(int DMG)
     {
+        print("Enemy reached the end");
         currentAlive -= 1;
         health -= DMG;
-      
+        crunch.Play();
+
         if (health <= 0)
         {
             Debug.Log("Game Over");
             healthUI.text = "DEATH";
+         
         }
+    }
+
+    public void RemoveCurrency(int amount)
+    {
+        print("Tower bought for" + amount.ToString() + "Currency");
+        currency -= amount;
     }
 
   void Update()
     {
-        currencyUI.text = Currency.ToString();
+        currencyUI.text = currency.ToString();
         healthUI.text = health.ToString();
     }
 
     IEnumerator ExecuteEverySecond()
     {
+        countdown.Play();
         while (secondsleft > 0)
         {
             yield return new WaitForSeconds(1);
@@ -113,6 +127,7 @@ public class WaveHandler : MonoBehaviour
 
     IEnumerator StartWave()
     {
+        countdown.Stop();
         waveAmt.text = "Wave " + currentWave.ToString();
 
         if (waves.ContainsKey(currentWave))
@@ -123,26 +138,34 @@ public class WaveHandler : MonoBehaviour
             int enemy2Amt = currentWaveData[1];
 
             // Reset currentAlive to the total number of enemies to spawn
-            currentAlive = enemy1Amt + enemy2Amt;
-            waveEarnings = currentAlive * 50;
+            int newEnemies = enemy1Amt + enemy2Amt; // Count of new enemies to be added
+            waveEarnings = newEnemies * 35;
+            currentAlive += newEnemies;
 
             // Start coroutines for spawning enemies
-            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(Enemy1, enemy1Amt, 0.5f, currentWaveData[2]));
-            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(Enemy2, enemy2Amt, 0.1f, currentWaveData[3]));
+            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(enemy1, enemy1Amt, 0.5f, currentWaveData[2]));
+            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(enemy2, enemy2Amt, 0.1f, currentWaveData[3]));
 
             // Wait for both coroutines to complete
             yield return spawnEnemy1Coroutine;
             yield return spawnEnemy2Coroutine;
 
             // Wait until all enemies are destroyed
+       
             while (currentAlive > 0)
             {
                 yield return null; // Wait until the next frame and check again
             }
+            if (currentAlive < 0)
+            {
+                currentAlive = 0;
+            }
 
             Debug.Log("All enemies are destroyed. Proceeding to the next wave.");
             currentWave += 1;
-            Currency += waveEarnings;
+            currency += waveEarnings;
+            victory.Play();
+            
           
 
             if (waves.ContainsKey(currentWave))
@@ -170,8 +193,8 @@ public class WaveHandler : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(spawnDelay1, spawnDelay2));
 
             GameObject enemy = Instantiate(enemyPrefab);
- 
-
+            // Adjust the enemy's behavior if necessary to reduce its health in EnemyDestroyed
+            // Increment currentAlive in the StartWave method to account for spawned enemies
             placed += 1;
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,10 @@ public class TowerAttacking : MonoBehaviour
     public float towerspeed;
     public int towerdamage;
     public GameObject rangepart;
- 
+    public int towercost;
+    public AudioSource attackaudio;
+    public AudioSource spawnaudio;
+
     public bool placed;
 
     private string enemytag = "Enemy";
@@ -18,9 +22,11 @@ public class TowerAttacking : MonoBehaviour
     public Camera mainCamera; 
     public string towertag = "Tower";
 
+
     // Start is called before the first frame update
     void Start()
     {
+        spawnaudio.Play();
         StartCoroutine(ExecuteEverySecond());
     }
 
@@ -84,7 +90,13 @@ public class TowerAttacking : MonoBehaviour
                         if (currentTarget.GetComponent<EnemyAI>() != null)
                         {
                             currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
-                          
+                            attackaudio.Play();
+                            int randomnumber = UnityEngine.Random.Range(1, 100);
+                            if (randomnumber == 1)
+                            {
+                                spawnaudio.Play();
+                            }
+
                         }
                     }
                     else
