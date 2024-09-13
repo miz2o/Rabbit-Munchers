@@ -42,8 +42,9 @@ public class EnemyAI : MonoBehaviour
         health -= loss;
         if(health <= 0)
         {
-            Destroy(gameObject);
             waveHandler.EnemyKilled(enemworth);
+            Destroy(gameObject);
+            
         }
     }
     // Update is called once per frame
