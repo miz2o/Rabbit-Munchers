@@ -90,7 +90,10 @@ public class TowerAttacking : MonoBehaviour
                         if (currentTarget.GetComponent<EnemyAI>() != null)
                         {
                             currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
-                            attackaudio.Play();
+                 
+                                attackaudio.Play();
+                           
+                        
                             int randomnumber = UnityEngine.Random.Range(1, 100);
                             if (randomnumber == 1)
                             {
@@ -102,7 +105,7 @@ public class TowerAttacking : MonoBehaviour
                     else
                     {
                         // Target left range, reset target
-                      
+                       
                         currentTarget = null;
                     }
                 }
