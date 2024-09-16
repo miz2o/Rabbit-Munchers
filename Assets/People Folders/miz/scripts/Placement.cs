@@ -112,6 +112,16 @@ public class Placement : MonoBehaviour
             }
         }
 
+
+
+        if (Input.GetKey("h") && Input.GetKey("y"))
+        {
+            currency += 100;
+            print("Devtools money");
+        }
+
+
+
     }
 
     void OnButtonClick(Button clickedButton)

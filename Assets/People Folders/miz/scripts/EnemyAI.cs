@@ -13,6 +13,7 @@ public class EnemyAI : MonoBehaviour
     public ParticleSystem damageEffect;
     public int enemworth;
     public GameObject healthCanvas;
+    private bool isDead = false;
 
     private WaveHandler waveHandler; // Reference to WaveHandler
 
@@ -38,10 +39,12 @@ public class EnemyAI : MonoBehaviour
 
     public void getDamage(int loss)
     {
+        if (isDead) return;
         damageEffect.Play();
         health -= loss;
         if(health <= 0)
         {
+            isDead = true;
             waveHandler.EnemyKilled(enemworth);
             Destroy(gameObject);
            

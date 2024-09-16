@@ -111,6 +111,12 @@ public class WaveHandler : MonoBehaviour
     {
         currencyUI.text = currency.ToString();
         healthUI.text = health.ToString();
+        if (Input.GetKey("h") && Input.GetKey("y"))
+        {
+            currency += 100;
+            print("Devtools money");
+        }
+
     }
 
     IEnumerator ExecuteEverySecond()
@@ -140,7 +146,7 @@ public class WaveHandler : MonoBehaviour
             // Reset currentAlive to the total number of enemies to spawn
             int newEnemies = enemy1Amt + enemy2Amt; // Count of new enemies to be added
             waveEarnings = newEnemies * 35;
-            currentAlive += newEnemies;
+            currentAlive = newEnemies;
 
             // Start coroutines for spawning enemies
             Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(enemy1, enemy1Amt, 0.5f, currentWaveData[2]));
@@ -156,10 +162,7 @@ public class WaveHandler : MonoBehaviour
             {
                 yield return null; // Wait until the next frame and check again
             }
-            if (currentAlive < 0)
-            {
-                currentAlive = 0;
-            }
+
 
             Debug.Log("All enemies are destroyed. Proceeding to the next wave.");
             currentWave += 1;
