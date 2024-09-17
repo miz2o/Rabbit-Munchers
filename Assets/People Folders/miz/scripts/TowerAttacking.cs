@@ -13,6 +13,7 @@ public class TowerAttacking : MonoBehaviour
     public int towercost;
     public AudioSource attackaudio;
     public AudioSource spawnaudio;
+    public Animator animator;
 
     public Material facemat;
     public Texture face1;
@@ -25,6 +26,7 @@ public class TowerAttacking : MonoBehaviour
 
     public Camera mainCamera; 
     public string towertag = "Tower";
+    public GameObject item;
 
 
     // Start is called before the first frame update
@@ -47,6 +49,7 @@ public class TowerAttacking : MonoBehaviour
             Vector3 direction = currentTarget.transform.position - transform.position;
             direction.y = 0;
             transform.rotation = Quaternion.LookRotation(direction);
+            animator.SetTrigger("Attacking");
         }
 
     }
@@ -102,6 +105,11 @@ public class TowerAttacking : MonoBehaviour
                             if (randomnumber == 1)
                             {
                                 spawnaudio.Play();
+                            }
+
+                            if(item != null)
+                           {
+
                             }
 
                         }

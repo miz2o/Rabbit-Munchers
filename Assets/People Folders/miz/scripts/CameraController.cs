@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.rotation = Quaternion.Euler(90, 0, 0);
+        transform.rotation = Quaternion.Euler(60, 0, 0);
     }
 
     // Update is called once per frame
@@ -50,13 +50,13 @@ public class CameraController : MonoBehaviour
         // Clamp the rotation to desired limits
         Vector3 rotationEuler = transform.rotation.eulerAngles;
 
-        if (rotationEuler.x < 60)
+        if (rotationEuler.x < 50)
+        {
+            rotationEuler.x = 50;
+        }
+        else if (rotationEuler.x > 60)
         {
             rotationEuler.x = 60;
-        }
-        else if (rotationEuler.x > 80)
-        {
-            rotationEuler.x = 80;
         }
 
         // Lock the Z-axis and Y-axis rotation

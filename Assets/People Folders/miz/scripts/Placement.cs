@@ -70,14 +70,14 @@ public class Placement : MonoBehaviour
 
                     if (selpartPlaced == false)
                     {
-                        placingtower = Instantiate(currentselection, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
+                        placingtower = Instantiate(currentselection, new Vector3(Mathf.RoundToInt(worldPosition.x), .5f, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selectionpart = Instantiate(placePart, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selpartPlaced = true;
 
                     }
                     if (selectionpart != null && placingtower != null)
                     {
-                        placingtower.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z));
+                        placingtower.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), .5f, Mathf.RoundToInt(worldPosition.z));
                         selectionpart.transform.position = new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z));
                     }
                 }
