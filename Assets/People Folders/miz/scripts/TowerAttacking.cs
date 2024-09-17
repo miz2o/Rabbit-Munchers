@@ -14,6 +14,10 @@ public class TowerAttacking : MonoBehaviour
     public AudioSource attackaudio;
     public AudioSource spawnaudio;
 
+    public Material facemat;
+    public Texture face1;
+    public Texture face2;
+
     public bool placed;
 
     private string enemytag = "Enemy";
