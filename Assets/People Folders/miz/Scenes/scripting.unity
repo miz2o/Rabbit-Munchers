@@ -2805,7 +2805,7 @@ PrefabInstance:
         type: 3}
       propertyPath: towers.Array.data[1]
       value: 
-      objectReference: {fileID: 5295868335521847812, guid: b21cebf980361b641b598fa6cd51fb87,
+      objectReference: {fileID: 7987825355791062819, guid: 33c935021225f6041b6a99ed12ea43b9,
         type: 3}
     - target: {fileID: 6752137666246394720, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}

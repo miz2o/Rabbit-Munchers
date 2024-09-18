@@ -379,15 +379,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerRadius: 4
-  towerspeed: 0.7
+  towerspeed: 0.6
   towerdamage: 25
   rangepart: {fileID: 9130128511685694479}
   towercost: 150
   attackaudio: {fileID: 5474688131080777895}
   spawnaudio: {fileID: 4945220304241499960}
+  animator: {fileID: 0}
+  throwspeed: 0
   placed: 0
   mainCamera: {fileID: 0}
   towertag: Tower
+  item: {fileID: 0}
+  towerIndex: 0
 --- !u!1 &5370876385847720444
 GameObject:
   m_ObjectHideFlags: 0

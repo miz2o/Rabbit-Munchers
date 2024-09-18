@@ -42,9 +42,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d2bd1721da006a84383797af4f981d61, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 19096299b407bb04f81367f53e75d951, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.769
+  m_Volume: 0.19
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -374,17 +374,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5132282
+      value: 3.8000052
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.553
+      value: 0.55300003
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.077392
+      value: 14.891582
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
@@ -425,6 +425,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: luccckyyyfixerd
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Tower
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
@@ -526,9 +531,6 @@ MonoBehaviour:
   spawnaudio: {fileID: 1704750798078638054}
   animator: {fileID: 2859780869722385500}
   throwspeed: 10
-  facemat: {fileID: 2100000, guid: 866dd171852edef43a49b3b12196b75e, type: 2}
-  face1: {fileID: 2800000, guid: c09283672ff371c4fa1c9794f2934c9f, type: 3}
-  face2: {fileID: 2800000, guid: f24916a6d0bd30c42b42b36cc27ad0d3, type: 3}
   placed: 0
   mainCamera: {fileID: 0}
   towertag: Tower
