@@ -14,6 +14,7 @@ public class TowerAttacking : MonoBehaviour
     public AudioSource attackaudio;
     public AudioSource spawnaudio;
     public Animator animator;
+    public float throwspeed;
 
     public Material facemat;
     public Texture face1;
@@ -27,6 +28,7 @@ public class TowerAttacking : MonoBehaviour
     public Camera mainCamera; 
     public string towertag = "Tower";
     public GameObject item;
+    public int towerIndex;
 
 
     // Start is called before the first frame update
@@ -49,7 +51,7 @@ public class TowerAttacking : MonoBehaviour
             Vector3 direction = currentTarget.transform.position - transform.position;
             direction.y = 0;
             transform.rotation = Quaternion.LookRotation(direction);
-            animator.SetTrigger("Attacking");
+            animator.SetBool("Attack", true);
         }
 
     }
@@ -74,6 +76,7 @@ public class TowerAttacking : MonoBehaviour
                 // If no current target, search for a new target
                 if (currentTarget == null)
                 {
+                    animator.SetBool("Attack", false);
                     Collider[] collidersInRange = Physics.OverlapSphere(transform.position, towerRadius);
 
                     foreach (Collider collider in collidersInRange)
@@ -93,12 +96,9 @@ public class TowerAttacking : MonoBehaviour
                     // Check if the target is still within range
                     if (Vector3.Distance(transform.position, currentTarget.transform.position) <= towerRadius)
                     {
-                        // Attack the enemy
-                        if (currentTarget.GetComponent<EnemyAI>() != null)
-                        {
-                            currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
-                 
-                                attackaudio.Play();
+                     
+
+                
                            
                         
                             int randomnumber = UnityEngine.Random.Range(1, 100);
@@ -107,12 +107,18 @@ public class TowerAttacking : MonoBehaviour
                                 spawnaudio.Play();
                             }
 
-                            if(item != null)
-                           {
+                            if (item != null && currentTarget != null)
+                            {
+                                print("Getting ready to throw");
 
+                                // Instantiate the item and set its position to the tower's current position
+                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+
+                                // Coroutine to move the instantiated item towards the enemy
+                                StartCoroutine(MoveItemTowardsTarget(toThrow, currentTarget));
                             }
 
-                        }
+                        
                     }
                     else
                     {
@@ -125,5 +131,31 @@ public class TowerAttacking : MonoBehaviour
 
             yield return new WaitForSeconds(towerspeed); // Attack interval
         }
+    }
+    IEnumerator MoveItemTowardsTarget(GameObject item, Collider target)
+    {
+        while (item != null && target != null && Vector3.Distance(item.transform.position, target.transform.position) > 0.1f)
+        {
+   
+            var step = throwspeed * Time.deltaTime;
+            item.transform.position = Vector3.MoveTowards(item.transform.position, target.transform.position, step);
+            yield return null;
+        }
+
+        if (item != null)
+        {
+            Destroy(item); 
+        }
+        if (currentTarget != null && currentTarget.GetComponent<EnemyAI>() != null)
+        {
+            currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
+
+            attackaudio.Play();
+        }
+        
+
+
+
+
     }
 }
