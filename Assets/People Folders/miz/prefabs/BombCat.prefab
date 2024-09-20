@@ -379,7 +379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerRadius: 4
-  towerspeed: 0.6
+  towerspeed: 2
   towerdamage: 25
   rangepart: {fileID: 9130128511685694479}
   towercost: 150

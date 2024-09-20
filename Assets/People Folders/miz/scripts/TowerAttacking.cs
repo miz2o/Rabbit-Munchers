@@ -112,12 +112,16 @@ public class TowerAttacking : MonoBehaviour
 
 
                         int randomnumber = UnityEngine.Random.Range(1, 100);
-                            if (randomnumber == 1)
-                            {
-                                spawnaudio.Play();
-                            }
+                        if (randomnumber == 1)
+                        {
+                            spawnaudio.Play();
+                        }
 
-                            if (item != null && currentTarget != null)
+                        if (item != null && currentTarget != null)
+                        {
+
+
+                            if (towerIndex == 1)
                             {
                                 print("Getting ready to throw");
 
@@ -127,9 +131,28 @@ public class TowerAttacking : MonoBehaviour
                                 // Coroutine to move the instantiated item towards the enemy
                                 StartCoroutine(MoveItemTowardsTarget(toThrow, currentTarget));
                                 attackaudio.Play();
+                            }
+
+                            if (towerIndex == 2)
+                            {
+                                print("Getting ready to throw");
+                                yield return new WaitForSeconds(0.7f);
+                                ///chatgpt please ass a .7 second delay here
+
+                                // Instantiate the item and set its position to the tower's current position
+                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+                                if (toThrow.GetComponent<BombHandler>())
+                                {
+                                    BombHandler bombHandler = toThrow.GetComponent<BombHandler>();
+
+                                    // Set the target point to the enemy's position or some calculated point
+                                    bombHandler.targetpoint = currentTarget.transform.position; // Example: target the current enemy's position
+                                }
+                                attackaudio.Play();
+                            }
                         }
 
-                        
+
                     }
                     else
                     {

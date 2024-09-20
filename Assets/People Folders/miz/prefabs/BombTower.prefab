@@ -157,7 +157,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.047, z: 0}
-  m_LocalScale: {x: 4, y: 0.1, z: 4}
+  m_LocalScale: {x: 7, y: 0.1, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7318811714982022553}
@@ -374,17 +374,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.7554321
+      value: 3.1160846
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.55300003
+      value: 0.553
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.331908
+      value: 19.45097
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerRadius: 4
-  towerspeed: 0.5
+  towerspeed: 1.5
   towerdamage: 25
   rangepart: {fileID: 5022503428958149328}
   towercost: 150
@@ -540,5 +540,5 @@ MonoBehaviour:
   placed: 0
   mainCamera: {fileID: 0}
   towertag: Tower
-  item: {fileID: 413755194098847028, guid: 93be961e90f633a4fbe3782fe89dae70, type: 3}
-  towerIndex: 1
+  item: {fileID: 359553586963385371, guid: ba461024a9b75ed4cbe058278c9847a7, type: 3}
+  towerIndex: 2
