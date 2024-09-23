@@ -2152,7 +2152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Lightning - 250
+  m_text: 'Lightning - 500
 
 '
   m_isRightToLeft: 0
@@ -2888,7 +2888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Devil - 450
+  m_text: 'Devil - 1500
 
 '
   m_isRightToLeft: 0
@@ -3678,7 +3678,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bomber - 150
+  m_text: 'Bomber - 250
 
 '
   m_isRightToLeft: 0
@@ -3892,13 +3892,13 @@ PrefabInstance:
         type: 3}
       propertyPath: towers.Array.data[2]
       value: 
-      objectReference: {fileID: 8816265737230429360, guid: 00c1005683a180541823c36bd48eb920,
+      objectReference: {fileID: 8470576086849142903, guid: 7156869a3213b624aa5e36ba72645967,
         type: 3}
     - target: {fileID: 6752137666246394720, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
       propertyPath: towers.Array.data[3]
       value: 
-      objectReference: {fileID: 8011614622492923369, guid: 854c509a5017c5e469d3aa746fc30709,
+      objectReference: {fileID: 3176688913762528933, guid: 4842b06a386bdbe47aa5f23698062938,
         type: 3}
     - target: {fileID: 6752137666246394720, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
