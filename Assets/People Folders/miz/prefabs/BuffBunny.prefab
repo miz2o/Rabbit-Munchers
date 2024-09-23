@@ -465,10 +465,10 @@ MonoBehaviour:
   currentpoint: 0
   speed: 1
   damage: 35
-  health: 200
+  health: 500
   healthdisplay: {fileID: 6917984151720300224}
   damageEffect: {fileID: 952251977714604738}
-  enemworth: 10
+  enemworth: 50
   healthCanvas: {fileID: 1025511258572480854}
 --- !u!1 &5694033700899981010
 GameObject:

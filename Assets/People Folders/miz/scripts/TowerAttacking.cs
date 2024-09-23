@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 using static UnityEngine.GraphicsBuffer;
 
 public class TowerAttacking : MonoBehaviour
@@ -16,6 +17,7 @@ public class TowerAttacking : MonoBehaviour
     public AudioSource spawnaudio;
     public Animator animator;
     public float throwspeed;
+    public VisualEffect poof;
 
 
 
@@ -35,6 +37,7 @@ public class TowerAttacking : MonoBehaviour
     {
         spawnaudio.Play();
         StartCoroutine(ExecuteEverySecond());
+        
 
 
     }
@@ -67,6 +70,7 @@ public class TowerAttacking : MonoBehaviour
 
     public void Place()
     {
+        poof.Play();
         placed = true;
         rangepart.SetActive(false);
     }
@@ -137,7 +141,7 @@ public class TowerAttacking : MonoBehaviour
                             {
                                 print("Getting ready to throw");
                                 yield return new WaitForSeconds(0.7f);
-                                ///chatgpt please ass a .7 second delay here
+                            
 
                                 // Instantiate the item and set its position to the tower's current position
                                 GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
@@ -146,8 +150,16 @@ public class TowerAttacking : MonoBehaviour
                                     BombHandler bombHandler = toThrow.GetComponent<BombHandler>();
 
                                     // Set the target point to the enemy's position or some calculated point
-                                    bombHandler.targetpoint = currentTarget.transform.position; // Example: target the current enemy's position
+                                    if (currentTarget != null)
+                                    {
+                                        bombHandler.targetpoint = currentTarget.transform.position; // Example: target the current enemy's position
+                                    }
+                                    else
+                                    {
+                                        Destroy(toThrow);
+                                    }
                                 }
+
                                 attackaudio.Play();
                             }
                         }

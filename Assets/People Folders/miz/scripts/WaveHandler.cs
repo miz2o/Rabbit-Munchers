@@ -20,6 +20,7 @@ public class WaveHandler : MonoBehaviour
     public AudioSource crunch;
     public AudioSource victory;
     public AudioSource countdown;
+    public int startingcurrency;
 
     public Dictionary<int, int[]> waves = new Dictionary<int, int[]>();
 
@@ -51,7 +52,7 @@ public class WaveHandler : MonoBehaviour
 
     void Start()
     {
-        currency = 200;
+        currency = startingcurrency;
         health = 100; // Initialize health
        
 
