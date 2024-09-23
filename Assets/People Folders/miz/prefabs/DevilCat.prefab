@@ -466,12 +466,17 @@ MonoBehaviour:
   towerspeed: 1
   towerdamage: 50
   rangepart: {fileID: 6358998119514787169}
-  towercost: 450
+  towercost: 1500
   attackaudio: {fileID: 7605511443672742693}
   spawnaudio: {fileID: 2371413906089019923}
+  animator: {fileID: 0}
+  throwspeed: 0
+  poof: {fileID: 0}
   placed: 0
   mainCamera: {fileID: 0}
   towertag: Tower
+  item: {fileID: 0}
+  towerIndex: 0
 --- !u!1 &9056219828980590106
 GameObject:
   m_ObjectHideFlags: 0

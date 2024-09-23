@@ -121,11 +121,11 @@ public class TowerAttacking : MonoBehaviour
                             spawnaudio.Play();
                         }
 
-                        if (item != null && currentTarget != null)
+                        if (currentTarget != null)
                         {
 
 
-                            if (towerIndex == 1)
+                            if (towerIndex == 1 && item != null)
                             {
                                 print("Getting ready to throw");
 
@@ -137,11 +137,11 @@ public class TowerAttacking : MonoBehaviour
                                 attackaudio.Play();
                             }
 
-                            if (towerIndex == 2)
+                            else if (towerIndex == 2 && item != null)
                             {
                                 print("Getting ready to throw");
                                 yield return new WaitForSeconds(0.7f);
-                            
+
 
                                 // Instantiate the item and set its position to the tower's current position
                                 GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
@@ -162,6 +162,30 @@ public class TowerAttacking : MonoBehaviour
 
                                 attackaudio.Play();
                             }
+                            else if (towerIndex == 3)
+                            {
+                                print("lightningattack");
+                                currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
+
+                            }
+                            else if (towerIndex == 4 && item != null)
+                            {
+                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+                                if (toThrow.GetComponent<BombHandler>())
+                                {
+                                    BombHandler bombHandler = toThrow.GetComponent<BombHandler>();
+
+                                    // Set the target point to the enemy's position or some calculated point
+                                    if (currentTarget != null)
+                                    {
+                                        bombHandler.targetpoint = currentTarget.transform.position; // Example: target the current enemy's position
+                                    }
+                                    else
+                                    {
+                                        Destroy(toThrow);
+                                    }
+                                }
+                            }
                         }
 
 
@@ -169,7 +193,7 @@ public class TowerAttacking : MonoBehaviour
                     else
                     {
                         // Target left range, reset target
-                       
+
                         currentTarget = null;
                     }
                 }
