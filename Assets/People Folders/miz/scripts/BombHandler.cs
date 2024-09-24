@@ -70,7 +70,21 @@ public class BombHandler : MonoBehaviour
             transform.position = currentPos;
             if (devil == true)
             {
-                 transform.rotation = Quaternion.LookRotation(targetpoint, Vector3.up);
+                print("rotatin");
+                // Calculate the direction to the target
+                Vector3 targetDirection = targetpoint - transform.position;
+
+                // Calculate the right vector, ensuring we maintain the Y-axis as up
+                Vector3 right = Vector3.Cross(targetDirection.normalized, Vector3.up);
+
+                // Recalculate the up direction so that the Y-axis faces the target direction
+                Vector3 up = Vector3.Cross(right, targetDirection.normalized);
+
+                // Create a rotation based on the direction the Y-axis should face (up) and the forward direction (targetDirection)
+                Quaternion targetRotation = Quaternion.LookRotation(up, targetDirection.normalized);
+
+                // Smoothly rotate the bomb to face the target
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
             }
 
             if (hitboxMaterial != null)
