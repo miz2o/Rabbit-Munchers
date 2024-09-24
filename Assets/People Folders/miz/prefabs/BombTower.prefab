@@ -647,7 +647,7 @@ MonoBehaviour:
   towerspeed: 1.5
   towerdamage: 25
   rangepart: {fileID: 5022503428958149328}
-  towercost: 150
+  towercost: 250
   attackaudio: {fileID: 7968534726994454396}
   spawnaudio: {fileID: 358322183418502886}
   animator: {fileID: 3706894253033871331}

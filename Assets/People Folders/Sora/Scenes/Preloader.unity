@@ -157,6 +157,7 @@ MonoBehaviour:
   scenesToPreload:
   - Main_Menu
   - Prologue
+  - scripting
 --- !u!111 &1555412485
 Animation:
   m_ObjectHideFlags: 0

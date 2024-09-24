@@ -9,12 +9,15 @@ EditorBuildSettings:
     path: Assets/scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/People Folders/Sora/Scenes/Preloader.unity
+    path: Assets/People Folders/sora/Scenes/Preloader.unity
     guid: a0dd5767e7d2449adad9277c7feea7fe
   - enabled: 1
-    path: Assets/People Folders/Sora/Scenes/Main_Menu.unity
+    path: Assets/People Folders/sora/Scenes/Main_Menu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/People Folders/Sora/Scenes/Prologue.unity
+    path: Assets/People Folders/sora/Scenes/Prologue.unity
     guid: e435f1a20d0fb4cdb99175be6d1277ba
+  - enabled: 1
+    path: Assets/People Folders/miz/Scenes/scripting.unity
+    guid: 467d3ae90d73063439f454a01b56cb7c
   m_configObjects: {}
