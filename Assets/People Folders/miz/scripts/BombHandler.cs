@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.VFX;
 
 public class BombHandler : MonoBehaviour
@@ -10,6 +11,7 @@ public class BombHandler : MonoBehaviour
     public float arcHeight;// Maximum height of the arc
     public GameObject bombHitBox;
     private GameObject hitbox = null;
+    public bool devil;
 
     private Vector3 startpoint;  // Starting position of the bomb
     public float duration;
@@ -66,8 +68,10 @@ public class BombHandler : MonoBehaviour
 
 
             transform.position = currentPos;
-
-
+            if (devil == true)
+            {
+                 transform.rotation = Quaternion.LookRotation(targetpoint, Vector3.up);
+            }
 
             if (hitboxMaterial != null)
             {

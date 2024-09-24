@@ -485,7 +485,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.2224417
+      value: -6.975882
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
@@ -495,7 +495,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.882173
+      value: -4.5151606
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,
         type: 3}
@@ -650,7 +650,7 @@ MonoBehaviour:
   placed: 0
   mainCamera: {fileID: 0}
   towertag: Tower
-  item: {fileID: 359553586963385371, guid: 78a06387fa9d14e4aa45ab9f31444212, type: 3}
+  item: {fileID: 7203039454384100312, guid: 6a742e5a4f6488a408bcf003297cabd8, type: 3}
   towerIndex: 4
 --- !u!95 &8196025499260104293 stripped
 Animator:
