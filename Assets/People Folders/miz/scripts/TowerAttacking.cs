@@ -18,6 +18,7 @@ public class TowerAttacking : MonoBehaviour
     public Animator animator;
     public float throwspeed;
     public VisualEffect poof;
+    public bool catastrove;
 
 
 
