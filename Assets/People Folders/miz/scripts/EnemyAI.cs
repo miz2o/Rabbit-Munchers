@@ -59,13 +59,22 @@ public class EnemyAI : MonoBehaviour
         if (currentpoint < waypoints.Length)
         {
             Transform pointToGo = waypoints[currentpoint];
-            transform.position = Vector3.MoveTowards(transform.position, pointToGo.position, speed * Time.deltaTime);
+            // Move towards the next waypoint
+            Vector3 targetPos = new Vector3(pointToGo.position.x, 0.5f , pointToGo.position.z);
+
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+
+
+
+
+
             Vector3 direction = pointToGo.transform.position - transform.position;
             direction.y = 0;
+       
             transform.rotation = Quaternion.LookRotation(direction);
 
             // Use a small threshold for position comparison
-            if (Vector3.Distance(transform.position, pointToGo.position) < 0.1f)
+            if (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(pointToGo.position.x, pointToGo.position.z)) < 0.1f)
             {
                 currentpoint += 1;
                 if (currentpoint >= waypoints.Length)

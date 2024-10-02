@@ -19,6 +19,8 @@ public class TowerAttacking : MonoBehaviour
     public float throwspeed;
     public VisualEffect poof;
     public bool catastrove;
+    public GameObject hand;
+    public ParticleSystem cataEffect;
 
 
 
@@ -31,6 +33,7 @@ public class TowerAttacking : MonoBehaviour
     public string towertag = "Tower";
     public GameObject item;
     public int towerIndex;
+    public GameObject toThrow;
 
 
     // Start is called before the first frame update
@@ -131,7 +134,7 @@ public class TowerAttacking : MonoBehaviour
                                 print("Getting ready to throw");
 
                                 // Instantiate the item and set its position to the tower's current position
-                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+                               toThrow = Instantiate(item, hand.transform.position, Quaternion.identity);
 
                                 // Coroutine to move the instantiated item towards the enemy
                                 StartCoroutine(MoveItemTowardsTarget(toThrow, currentTarget));
@@ -145,7 +148,7 @@ public class TowerAttacking : MonoBehaviour
 
 
                                 // Instantiate the item and set its position to the tower's current position
-                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+                                toThrow = Instantiate(item, hand.transform.position, Quaternion.identity);
                                 if (toThrow.GetComponent<BombHandler>())
                                 {
                                     BombHandler bombHandler = toThrow.GetComponent<BombHandler>();
@@ -171,10 +174,15 @@ public class TowerAttacking : MonoBehaviour
                             }
                             else if (towerIndex == 4 && item != null)
                             {
-                                GameObject toThrow = Instantiate(item, transform.position, Quaternion.identity);
+                                toThrow = Instantiate(item, hand.transform.position, Quaternion.identity);
                                 if (toThrow.GetComponent<BombHandler>())
                                 {
                                     BombHandler bombHandler = toThrow.GetComponent<BombHandler>();
+                                    if (catastrove == true)
+                                    {
+                                        bombHandler.bombdamage *= 5;
+                                        bombHandler.speed /= 5;
+                                    }
 
                                     // Set the target point to the enemy's position or some calculated point
                                     if (currentTarget != null)

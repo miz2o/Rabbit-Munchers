@@ -11,8 +11,7 @@ public class WaveHandler : MonoBehaviour
     public TMP_Text healthUI;
     public int secondsleft;
     public int currentWave;
-    public GameObject enemy1;
-    public GameObject enemy2;
+
     public Transform[] waypoints;
     public int currentAlive;
     public int waveEarnings;
@@ -24,13 +23,21 @@ public class WaveHandler : MonoBehaviour
 
     public Dictionary<int, int[]> waves = new Dictionary<int, int[]>();
 
+    public GameObject speedy;
+    public GameObject candy;
+    public GameObject brown;
 
-  /// Wavedata info  <summary>
-  ///  0 = Big bunny
-  ///  1 = small bunny
-  ///  2 = big bunny max time
-  ///  3 = small bunny max time
-  /// </summary>
+
+
+
+
+
+    /// Wavedata info  <summary>
+    ///  0 = Speedy
+    ///  1 = Candy
+    ///  2 = Brown
+    ///  3 = small bunny max time
+    /// </summary>
 
 
 
@@ -141,24 +148,27 @@ public class WaveHandler : MonoBehaviour
         {
             int[] currentWaveData = waves[currentWave];
             Debug.Log("Starting Wave " + currentWave);
-            int enemy1Amt = currentWaveData[0];
-            int enemy2Amt = currentWaveData[1];
+            int speedyAmt = currentWaveData[0];
+            int candyamt = currentWaveData[1];
+            int brownamt = currentWaveData[2];
 
             // Reset currentAlive to the total number of enemies to spawn
-            int newEnemies = enemy1Amt + enemy2Amt; // Count of new enemies to be added
-            waveEarnings = newEnemies * 35;
+            int newEnemies = speedyAmt + candyamt + brownamt; // Count of new enemies to be added
+            waveEarnings = newEnemies * 25;
             currentAlive = newEnemies;
 
             // Start coroutines for spawning enemies
-            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(enemy1, enemy1Amt, 0.5f, currentWaveData[2]));
-            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(enemy2, enemy2Amt, 0.1f, currentWaveData[3]));
+            Coroutine spawnEnemy1Coroutine = StartCoroutine(SpawnEnemies(speedy, speedyAmt, 0.1f, currentWaveData[3]));
+            Coroutine spawnEnemy2Coroutine = StartCoroutine(SpawnEnemies(candy, candyamt, 0.1f, currentWaveData[3]));
+            Coroutine spawnEnemy3Coroutine = StartCoroutine(SpawnEnemies(brown, brownamt, 0.1f, currentWaveData[3]));
 
             // Wait for both coroutines to complete
             yield return spawnEnemy1Coroutine;
             yield return spawnEnemy2Coroutine;
+            yield return spawnEnemy3Coroutine;
 
             // Wait until all enemies are destroyed
-       
+
             while (currentAlive > 0)
             {
                 yield return null; // Wait until the next frame and check again

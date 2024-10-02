@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CatastroveHandler : MonoBehaviour
+public class SellScript : MonoBehaviour
 {
-
     public Button button;
-    public bool Catastroveenabled;
+    public bool sellmode;
+    private int sellamt;
+    public GameObject wavehandler;
 
 
 
@@ -22,20 +23,21 @@ public class CatastroveHandler : MonoBehaviour
 
     void OnButtonClick(Button clickedButton)
     {
-        Catastroveenabled = true;
+
+        sellmode = !sellmode;
     }
+    // Start is called before the first frame update
+
 
     // Update is called once per frame
     void Update()
     {
-     
-            if (Catastroveenabled && Input.GetMouseButtonDown(0)) // Detect left-click (mouse button 0)
-            {
-                DetectTowerClick();
-            }
+        if (sellmode && Input.GetMouseButtonDown(0)) // Detect left-click (mouse button 0)
+        {
+            DetectTowerClick();
 
+        }
     }
-
     void DetectTowerClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Cast a ray from the camera through the mouse position
@@ -47,20 +49,24 @@ public class CatastroveHandler : MonoBehaviour
             {
                 Debug.Log("Clicked on a Tower!");
                 // Perform whatever actions you need for clicking on a Tower object
-                hit.collider.gameObject.transform.localScale = new Vector3(3, 3, 3); // Scale to 3x its size
-
-
-                Catastroveenabled = false;
+                Destroy(hit.collider.gameObject);
+                sellmode = false;
+       
                 if (hit.collider.GetComponent<TowerAttacking>() != null)
                 {
-                    hit.collider.GetComponent<TowerAttacking>().towerRadius *= 5;
-                    hit.collider.GetComponent<TowerAttacking>().towerdamage *= 5;
-                    hit.collider.GetComponent<TowerAttacking>().throwspeed /= 3;
-                    hit.collider.GetComponent<TowerAttacking>().towerspeed /= 3;
-                    hit.collider.GetComponent<TowerAttacking>().cataEffect.Play();
+                    sellamt = hit.collider.GetComponent<TowerAttacking>().towercost / 2;
+                    if (wavehandler.GetComponent<WaveHandler>() != null)
+                    {
+                        wavehandler.GetComponent<WaveHandler>().currency += sellamt;
+                      
+                    }
+                   if (hit.collider.GetComponent<TowerAttacking>().toThrow != null)
+                   {
+                        Destroy(hit.collider.GetComponent<TowerAttacking>().toThrow);
+                   }
+
                 }
             }
         }
     }
 }
-

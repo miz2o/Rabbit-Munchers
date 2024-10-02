@@ -125,10 +125,11 @@ MonoBehaviour:
   arcHeight: 3
   bombHitBox: {fileID: 4634828676822940881, guid: 196414a95d24a9f44ae9fb4d70122f40,
     type: 3}
+  devil: 0
   duration: 2
   explosionwait: 0.6
   explosion: {fileID: 8846924893932697196}
-  bombdamage: 100
+  bombdamage: 25
   explosionSound: {fileID: 363595242450854277}
   bombradius: 1
   exploded: 0

@@ -351,7 +351,7 @@ MonoBehaviour:
   duration: 2
   explosionwait: 1
   explosion: {fileID: 2946199640437823640}
-  bombdamage: 25
+  bombdamage: 17
   explosionSound: {fileID: 2661038764412777480}
   bombradius: 6
   exploded: 0
