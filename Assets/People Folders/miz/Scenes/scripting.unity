@@ -1243,6 +1243,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 186447069}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &187979141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 187979143}
+  - component: {fileID: 187979142}
+  m_Layer: 0
+  m_Name: UpgradeScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &187979142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187979141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 024890fe0ffe8fe4c90adda2f5970525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeMenu: {fileID: 8433169178610150141, guid: e4225706c438d5d4880d9d2e449aa031,
+    type: 3}
+  selectedTower: {fileID: 0}
+  stayorientation: {x: -32.873, y: 180, z: 0}
+  spawnedmenu: {fileID: 0}
+--- !u!4 &187979143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187979141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.241523, y: 2.104155, z: -12.066309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &190678942
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12085,18 +12134,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3501719976831840509, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -14.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501719976831840509, guid: 581884aaab6eb57498f684ab5a98ed77,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501719976831840509, guid: 581884aaab6eb57498f684ab5a98ed77,
+        type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.94374937
+      value: 0.9309622
       objectReference: {fileID: 0}
     - target: {fileID: 3501719976831840509, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.33066165
+      value: 0.36511552
       objectReference: {fileID: 0}
     - target: {fileID: 3501719976831840509, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 38.618
+      value: 42.829
+      objectReference: {fileID: 0}
+    - target: {fileID: 6144625301333542191, guid: 581884aaab6eb57498f684ab5a98ed77,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6752137666246394720, guid: 581884aaab6eb57498f684ab5a98ed77,
         type: 3}
@@ -12181,3 +12245,4 @@ SceneRoots:
   - {fileID: 411568080}
   - {fileID: 588037433}
   - {fileID: 594724025}
+  - {fileID: 187979143}

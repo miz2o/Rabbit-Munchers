@@ -33,6 +33,11 @@ public class CameraController : MonoBehaviour
         Vector3 movement = new Vector3(hor, 0, vert); // Adjusted to avoid affecting y in this step
         transform.parent.position += movement * Time.deltaTime;
 
+        Vector3 parentPosition = transform.parent.position;
+        parentPosition.x = Mathf.Clamp(parentPosition.x, -25, -8);
+        parentPosition.z = Mathf.Clamp(parentPosition.z, 2, 22);
+        transform.parent.position = parentPosition;
+
         // Get input for scroll wheel
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
@@ -41,7 +46,18 @@ public class CameraController : MonoBehaviour
         {
             Vector3 newPosition = transform.parent.position;
             newPosition.y += scrollInput * scrollspeed;
+         
+
+            if(newPosition.y > 31)
+            {
+                newPosition.y = 31;
+            }
+            if (newPosition.y < 17)
+            {
+                newPosition.y = 17;
+            }
             transform.parent.position = newPosition;
+
         }
 
         // Rotate the camera based on mouse movement
@@ -50,9 +66,9 @@ public class CameraController : MonoBehaviour
         // Clamp the rotation to desired limits
         Vector3 rotationEuler = transform.rotation.eulerAngles;
 
-        if (rotationEuler.x < 50)
+        if (rotationEuler.x < 57)
         {
-            rotationEuler.x = 50;
+            rotationEuler.x = 57;
         }
         else if (rotationEuler.x > 60)
         {
