@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class WaveHandler : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class WaveHandler : MonoBehaviour
     public TMP_Text waveAmt;
     public TMP_Text currencyUI;
     public TMP_Text healthUI;
+    public Image healthBar;
     public int secondsleft;
     public int currentWave;
 
@@ -119,6 +121,13 @@ public class WaveHandler : MonoBehaviour
     {
         currencyUI.text = currency.ToString();
         healthUI.text = health.ToString();
+        healthBar.fillAmount = health / 100f;
+
+
+
+
+
+
         if (Input.GetKey("h") && Input.GetKey("y"))
         {
             currency += 100;
