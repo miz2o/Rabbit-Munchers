@@ -9,8 +9,11 @@ public class WaveHandler : MonoBehaviour
     public int currency;
     public TMP_Text waveAmt;
     public TMP_Text currencyUI;
-    public TMP_Text healthUI;
+   
     public Image healthBar;
+    public Image catBar;
+    public GameObject catabutton;
+
     public int secondsleft;
     public int currentWave;
 
@@ -29,7 +32,8 @@ public class WaveHandler : MonoBehaviour
     public GameObject candy;
     public GameObject brown;
 
-
+    public int catastroveamt;
+    
 
 
 
@@ -92,7 +96,7 @@ public class WaveHandler : MonoBehaviour
         print("Killed an enemy");
         currentAlive -= 1;
         currency += enemworth;
-       
+        catastroveamt += 1;
     }
 
 
@@ -106,8 +110,8 @@ public class WaveHandler : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Game Over");
-            healthUI.text = "DEATH";
-         
+          
+           
         }
     }
 
@@ -120,9 +124,9 @@ public class WaveHandler : MonoBehaviour
   void Update()
     {
         currencyUI.text = currency.ToString();
-        healthUI.text = health.ToString();
+       
         healthBar.fillAmount = health / 100f;
-
+        catBar.fillAmount = catastroveamt / 100f;
 
 
 
@@ -132,6 +136,16 @@ public class WaveHandler : MonoBehaviour
         {
             currency += 100;
             print("Devtools money");
+        }
+        if (Input.GetKey("h") && Input.GetKey("u"))
+        {
+            catastroveamt += 1;
+            print("catamaxed");
+        }
+
+        if (catastroveamt >= 100)
+        {
+            catabutton.SetActive(true);
         }
 
     }

@@ -131,7 +131,7 @@ public class TowerAttacking : MonoBehaviour
 
                             if (towerIndex == 1 && item != null)
                             {
-                                print("Getting ready to throw");
+                               
 
                                 // Instantiate the item and set its position to the tower's current position
                                toThrow = Instantiate(item, hand.transform.position, Quaternion.identity);
@@ -143,7 +143,7 @@ public class TowerAttacking : MonoBehaviour
 
                             else if (towerIndex == 2 && item != null)
                             {
-                                print("Getting ready to throw");
+                             
                                 yield return new WaitForSeconds(0.7f);
 
 
@@ -168,7 +168,7 @@ public class TowerAttacking : MonoBehaviour
                             }
                             else if (towerIndex == 3)
                             {
-                                print("lightningattack");
+                                
                                 currentTarget.GetComponent<EnemyAI>().getDamage(towerdamage);
 
                             }
