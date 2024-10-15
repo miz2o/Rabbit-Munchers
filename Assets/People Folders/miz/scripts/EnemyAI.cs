@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public int damage;
     public int health;
-    public TMPro.TMP_Text healthdisplay;
+    
     public ParticleSystem damageEffect;
     public int enemworth;
     public GameObject healthCanvas;
     private bool isDead = false;
+    public Image enemyhp;
 
     private WaveHandler waveHandler; // Reference to WaveHandler
 
@@ -55,7 +57,8 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         healthCanvas.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
-        healthdisplay.text = health.ToString();
+        enemyhp.fillAmount = health / 100f;
+      
         if (currentpoint < waypoints.Length)
         {
             Transform pointToGo = waypoints[currentpoint];
