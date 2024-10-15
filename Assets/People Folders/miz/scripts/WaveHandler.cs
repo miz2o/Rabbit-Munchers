@@ -118,7 +118,7 @@ public class WaveHandler : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Game Over");
-            Exitscreen(losescreenname);
+            StartCoroutine(Exitscreen(losescreenname));
 
         }
     }
@@ -221,7 +221,7 @@ public class WaveHandler : MonoBehaviour
             else
             {
                 Debug.Log("You Win!");
-                Exitscreen(winscreenname);
+                StartCoroutine(Exitscreen(winscreenname));
             }
         }
         else
