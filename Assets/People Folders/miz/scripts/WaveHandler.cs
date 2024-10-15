@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WaveHandler : MonoBehaviour
 {
+
+    public string winscreenname;
+    public string losescreenname;
+    public GameObject scenetransition;
+
+
+
     public int currency;
     public TMP_Text waveAmt;
     public TMP_Text currencyUI;
@@ -110,8 +118,8 @@ public class WaveHandler : MonoBehaviour
         if (health <= 0)
         {
             Debug.Log("Game Over");
-          
-           
+            Exitscreen(losescreenname);
+
         }
     }
 
@@ -213,6 +221,7 @@ public class WaveHandler : MonoBehaviour
             else
             {
                 Debug.Log("You Win!");
+                Exitscreen(winscreenname);
             }
         }
         else
@@ -234,5 +243,12 @@ public class WaveHandler : MonoBehaviour
             // Increment currentAlive in the StartWave method to account for spawned enemies
             placed += 1;
         }
+    }
+
+    IEnumerator Exitscreen(string scenename)
+    {
+        scenetransition.SetActive(true);
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(scenename);
     }
 }
