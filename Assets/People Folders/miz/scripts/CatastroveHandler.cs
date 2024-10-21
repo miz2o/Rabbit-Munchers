@@ -85,8 +85,8 @@ public class CatastroveHandler : MonoBehaviour
         tower.GetComponent<TowerAttacking>().towerdamage /= 5;
         tower.GetComponent<TowerAttacking>().throwspeed *= 3;
         tower.GetComponent<TowerAttacking>().towerspeed *= 3;
+       tower.GetComponent<TowerAttacking>().cataEffect.Stop();
 
-       
     }
 }
 
