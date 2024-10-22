@@ -5473,7 +5473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerRadius: 1.5
   towerspeed: 0.05
-  towerdamage: 2
+  towerdamage: 6
   rangepart: {fileID: 3348381312198586144}
   towercost: 500
   attackaudio: {fileID: 3171991462813681621}
@@ -5489,6 +5489,7 @@ MonoBehaviour:
   towertag: Tower
   item: {fileID: 0}
   towerIndex: 3
+  toThrow: {fileID: 0}
 --- !u!4 &9135086471282137805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,

@@ -5510,7 +5510,7 @@ MonoBehaviour:
   towerspeed: 1.5
   towerdamage: 25
   rangepart: {fileID: 4790394649085293420}
-  towercost: 1500
+  towercost: 1000
   attackaudio: {fileID: 4377432961893297532}
   spawnaudio: {fileID: 6291476269769199151}
   animator: {fileID: 8196025499260104293}
@@ -5524,6 +5524,7 @@ MonoBehaviour:
   towertag: Tower
   item: {fileID: 7203039454384100312, guid: 6a742e5a4f6488a408bcf003297cabd8, type: 3}
   towerIndex: 4
+  toThrow: {fileID: 0}
 --- !u!95 &8196025499260104293 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9e5534cd7f9586b4cb5fc16a59c2c9c6,

@@ -7,24 +7,27 @@ using UnityEngine.SceneManagement;
 
 public class WaveHandler : MonoBehaviour
 {
-
+    [Header("SCENES")]
     public string winscreenname;
     public string losescreenname;
     public GameObject scenetransition;
     private float fixedDeltaTime;
 
-
+    [Header("CURRENCY")]
     public int currency;
     public TMP_Text waveAmt;
     public TMP_Text currencyUI;
-   
+
+    [Header("HEALTH & CATASTROPHE")]
     public Image healthBar;
     public Image catBar;
     public GameObject catabutton;
 
+    [Header("WAVES")]
     public int secondsleft;
     public int currentWave;
 
+    [Header("MISC")]
     public Transform[] waypoints;
     public int currentAlive;
     public int waveEarnings;
@@ -36,6 +39,7 @@ public class WaveHandler : MonoBehaviour
 
     public Dictionary<int, int[]> waves = new Dictionary<int, int[]>();
 
+    [Header("ENEMIES")]
     public GameObject speedy;
     public GameObject candy;
     public GameObject brown;
