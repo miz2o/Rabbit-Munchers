@@ -5360,7 +5360,7 @@ MonoBehaviour:
   waypoints: []
   currentpoint: 0
   speed: 3
-  damage: 10
+  damage: 20
   health: 100
   damageEffect: {fileID: 6662595276977861059}
   enemworth: 20

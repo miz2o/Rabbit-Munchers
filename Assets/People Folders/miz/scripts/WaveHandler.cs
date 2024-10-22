@@ -11,7 +11,7 @@ public class WaveHandler : MonoBehaviour
     public string winscreenname;
     public string losescreenname;
     public GameObject scenetransition;
-
+    private float fixedDeltaTime;
 
 
     public int currency;
@@ -73,6 +73,7 @@ public class WaveHandler : MonoBehaviour
 
     void Start()
     {
+        this.fixedDeltaTime = Time.fixedDeltaTime;
         currency = startingcurrency;
         health = 100; // Initialize health
        
@@ -221,6 +222,7 @@ public class WaveHandler : MonoBehaviour
             else
             {
                 Debug.Log("You Win!");
+                
                 StartCoroutine(Exitscreen(winscreenname));
             }
         }
@@ -247,6 +249,9 @@ public class WaveHandler : MonoBehaviour
 
     IEnumerator Exitscreen(string scenename)
     {
+
+        Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = this.fixedDeltaTime * Time.timeScale;
         scenetransition.SetActive(true);
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(scenename);
