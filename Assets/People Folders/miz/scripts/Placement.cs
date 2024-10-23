@@ -63,13 +63,15 @@ public class Placement : MonoBehaviour
                 GameObject objectHit = hit.transform.gameObject;
 
                 // Do something with the world position
+                
 
 
                 if (objectHit != null && objectHit.tag == "Floor")
                 {
-
+                   
                     if (selpartPlaced == false)
                     {
+                       
                         placingtower = Instantiate(currentselection, new Vector3(Mathf.RoundToInt(worldPosition.x), .5f, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selectionpart = Instantiate(placePart, new Vector3(Mathf.RoundToInt(worldPosition.x), 1, Mathf.RoundToInt(worldPosition.z)), Quaternion.identity);
                         selpartPlaced = true;

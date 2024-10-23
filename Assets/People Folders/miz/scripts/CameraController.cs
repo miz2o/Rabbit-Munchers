@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour
         if (scrollInput != 0)
         {
             Vector3 newPosition = transform.parent.position;
-            newPosition.y += scrollInput * scrollspeed;
+            newPosition.y -= scrollInput * scrollspeed;
          
 
             if(newPosition.y > 31)
