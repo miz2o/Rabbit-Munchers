@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -10,8 +11,7 @@ public class EnemyAI : MonoBehaviour
     public float speed;
     public int damage;
     public int health;
-    
-    public ParticleSystem damageEffect;
+    public VisualEffect damageEffect;
     public int enemworth;
     public GameObject healthCanvas;
     private bool isDead = false;
