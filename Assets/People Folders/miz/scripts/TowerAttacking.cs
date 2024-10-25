@@ -20,7 +20,7 @@ public class TowerAttacking : MonoBehaviour
     public VisualEffect poof;
     public bool catastrove;
     public GameObject hand;
-    public ParticleSystem cataEffect;
+    public VisualEffect cataEffect;
 
 
 
